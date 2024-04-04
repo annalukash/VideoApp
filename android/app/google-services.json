@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "840820351367",
+    "project_id": "videoapp-212d2",
+    "storage_bucket": "videoapp-212d2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:840820351367:android:9d907e0e5594e7d9d4b322",
+        "android_client_info": {
+          "package_name": "annalukash.videoapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5X4iEUNCJ2jryiXGrqLaQMI0hsiXW54g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
