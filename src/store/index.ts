@@ -103,6 +103,16 @@ class Store {
       ],
     },
   ];
+  @observable accessor currentlyWatchingVideo: IVideo | null = {
+    id: 'efhbwjnk34',
+    name: 'Lethal Limits',
+    author: 'Mia Downing',
+    image:
+      'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1348777440i/16050474.jpg',
+    link: '',
+    type: VideoCategory.ROMANCE,
+    releaseDate: '2024-04-01T07:56:16.367Z',
+  };
 
   @computed get sortedVideoList(): IVideoGroup[] {
     return this.videoList.map(item => {

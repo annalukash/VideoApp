@@ -10,18 +10,19 @@ export default StyleSheet.create({
     height: height / 4,
     borderRadius: 12,
     overflow: 'hidden',
-    alignItems: 'flex-start',
     justifyContent: 'space-between',
-    padding: 16,
     paddingTop: 8,
   },
   categoryContainer: {
     backgroundColor: Colors.black,
     padding: 6,
     borderRadius: 4,
+    alignSelf: 'flex-start',
+    marginLeft: 16,
   },
   category: {
     fontFamily: Fonts.bold,
+    fontWeight: '700',
     fontSize: 11,
     lineHeight: 21,
     color: Colors.white,
@@ -29,15 +30,21 @@ export default StyleSheet.create({
   },
   title: {
     fontFamily: Fonts.bold,
+    fontWeight: '700',
     fontSize: 24,
     lineHeight: 28,
     color: Colors.flashWhite,
   },
   text: {
     fontFamily: Fonts.regular,
+    fontWeight: '400',
     fontSize: 13,
     lineHeight: 16,
     color: Colors.grey,
     paddingTop: 4,
+  },
+  backdrop: {
+    backgroundColor: Colors.backdrop,
+    padding: 16,
   },
 });

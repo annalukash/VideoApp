@@ -8,6 +8,8 @@ import Store from '../../store';
 import IVideoGroup from '../../interfaces/IVideoGroup.ts';
 import VideoItem from '../../components/video-item';
 import VideoCarousel from '../../components/video-carousel';
+import Header from '../../components/header';
+import WatchingProgress from '../../components/watching-progress';
 
 const HomeScreen = () => {
   const insets: EdgeInsets = useSafeAreaInsets();
@@ -19,13 +21,16 @@ const HomeScreen = () => {
 
   return (
     <View style={Style.container}>
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: insets.bottom }}>
         <VideoCarousel />
+        <WatchingProgress />
         {videoListGroup.map(videoGroupItem => (
-          <View
-            key={videoGroupItem.id}
-            style={{ marginTop: 40, marginBottom: insets.bottom }}>
-            <Text style={Style.title}>{videoGroupItem.categoryName}</Text>
+          <View key={videoGroupItem.id} style={{ marginTop: 40 }}>
+            <Header style={{ marginLeft: 16 }}>
+              {videoGroupItem.categoryName}
+            </Header>
             <FlatList
               data={videoGroupItem.videoList}
               renderItem={({ item }) => <VideoItem videoItem={item} />}

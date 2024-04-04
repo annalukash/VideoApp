@@ -15,6 +15,7 @@ export default StyleSheet.create({
   },
   text: {
     fontFamily: Fonts.semiBold,
+    fontWeight: '600',
     fontSize: 14,
     lineHeight: 17,
     color: Colors.brightGray,
@@ -34,6 +35,7 @@ export default StyleSheet.create({
   },
   accent: {
     fontFamily: Fonts.extraBold,
+    fontWeight: '800',
     fontSize: 11,
     lineHeight: 14,
     color: Colors.blue,

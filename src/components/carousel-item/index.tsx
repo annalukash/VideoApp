@@ -15,7 +15,7 @@ const CarouselItem = ({ videoItem }: IProps) => {
       <View style={Style.categoryContainer}>
         <Text style={Style.category}>{type}</Text>
       </View>
-      <View>
+      <View style={Style.backdrop}>
         <Text style={Style.title}>{name}</Text>
         <Text style={Style.text}>{author}</Text>
       </View>

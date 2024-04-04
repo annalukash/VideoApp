@@ -7,5 +7,7 @@ export const Colors = {
   brightGray: '#EBEDF0',
   whiteOpacity: 'rgba(255, 255, 255, 0.32)',
   flashWhite: '#F2F3F5',
+  platinum: '#E1E3E6',
+  backdrop: 'rgba(0,0,0,0.4)',
   red: 'red',
 };
