@@ -8,6 +8,7 @@ interface IVideo {
   link: string;
   type: VideoCategory;
   image: string;
+  episodes: string[];
 }
 
 export default IVideo;

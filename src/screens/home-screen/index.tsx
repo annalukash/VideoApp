@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Text, View, FlatList, ScrollView } from 'react-native';
+import { View, FlatList, ScrollView } from 'react-native';
 import { observer } from 'mobx-react';
 import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
 

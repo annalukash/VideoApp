@@ -9,6 +9,7 @@ import HomeScreen from './src/screens/home-screen';
 import { Colors } from './src/theme/colors';
 import SearchIcon from './src/icons/SearchIcon.tsx';
 import Header from './src/components/header';
+import VideoPlayerScreen from './src/screens/video-player-screen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -29,6 +30,11 @@ const App = () => {
               </TouchableOpacity>
             ),
           }}
+        />
+        <Stack.Screen
+          name="VideoPlayer"
+          component={VideoPlayerScreen}
+          options={{ headerShown: false }}
         />
       </Stack.Navigator>
     </NavigationContainer>

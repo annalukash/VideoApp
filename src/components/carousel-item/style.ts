@@ -44,7 +44,6 @@ export default StyleSheet.create({
     paddingTop: 4,
   },
   backdrop: {
-    backgroundColor: Colors.backdrop,
     padding: 16,
   },
 });
