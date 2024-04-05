@@ -15,10 +15,6 @@ const HomeScreen = () => {
   const insets: EdgeInsets = useSafeAreaInsets();
   const videoListGroup: IVideoGroup[] = Store.sortedVideoList;
 
-  useEffect(() => {
-    Store.getVideoList();
-  }, []);
-
   return (
     <View style={Style.container}>
       <ScrollView
