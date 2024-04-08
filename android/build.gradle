@@ -9,15 +9,17 @@ buildscript {
     }
     repositories {
         google()
+        maven { url 'https://maven.google.com' }
+        mavenLocal()
         mavenCentral()
     }
     dependencies {
         classpath("com.android.tools.build:gradle")
         classpath("com.facebook.react:react-native-gradle-plugin")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")
-        classpath 'com.google.gms:google-services:4.4.1'
+        classpath "com.google.gms:google-services:4.4.1"
+        classpath "com.android.tools.build:gradle:8.3.1"
     }
 }
 
 apply plugin: "com.facebook.react.rootproject"
-apply plugin: 'com.google.gms.google-services'

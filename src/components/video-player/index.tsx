@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { TouchableOpacity, View } from 'react-native';
-import Video from 'react-native-video';
+import { TouchableOpacity, View, Platform } from 'react-native';
+import Video, { OnProgressData } from 'react-native-video';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { getVideoDuration } from 'react-native-video-duration';
@@ -46,14 +46,21 @@ const VideoPlayer = ({
     }
   }, [currentVideoIndex]);
 
-  const loadVideoDuration = async () => {
-    const duration: Number = await getVideoDuration(video);
-    setVideoDuration(duration as number);
+  const loadVideoDuration = async (): Promise<void> => {
+    if (Platform.OS === 'ios') {
+      try {
+        const duration: Number = await getVideoDuration(video);
+        setVideoDuration(duration as number);
+      } catch (e) {
+        console.log('error while get video duration', e);
+      }
+    }
   };
 
-  const onProgress = (value: number): void => {
-    setVideoProgress(value);
-    Store.mutateCurrentVideoProgress(value);
+  const onProgress = (value: OnProgressData): void => {
+    setVideoDuration(value.playableDuration);
+    setVideoProgress(value.currentTime);
+    Store.mutateCurrentVideoProgress(value.currentTime);
   };
 
   return (
@@ -69,8 +76,9 @@ const VideoPlayer = ({
         resizeMode={'stretch'}
         paused={currentVideoIndex !== index || isPaused}
         ignoreSilentSwitch={'ignore'}
-        onProgress={data => onProgress(data.currentTime)}
+        onProgress={data => onProgress(data)}
         repeat
+        onError={error => console.log(error)}
       />
       <GradientBar style={Style.header}>
         <TouchableOpacity onPress={() => navigation.goBack()}>

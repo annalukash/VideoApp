@@ -1,7 +1,7 @@
 import { action, makeObservable, observable, computed } from 'mobx';
 import remoteConfig from '@react-native-firebase/remote-config';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import IVideoGroup from '../interfaces/IVideoGroup.ts';
-import VideoCategory from '../interfaces/enums/VideoCategory.ts';
 import IVideo from '../interfaces/IVideo.ts';
 import ISavedVideo from '../interfaces/ISavedVideo.ts';
 
@@ -21,7 +21,10 @@ class Store {
             this.getVideoList();
           });
       });
+    this.getSavedVideoProgress();
   }
+
+  private storageKey: string = 'watchingVideo';
 
   @observable accessor currentVideoProgress: number = 0;
   @observable accessor currentEpisode: number = 0;
@@ -53,12 +56,8 @@ class Store {
     this.videoList = list;
   }
 
-  @action public mutateWatchingVideo(video: IVideo): void {
-    this.currentlyWatchingVideo = {
-      ...video,
-      watchingProgress: this.currentVideoProgress,
-      savedEpisode: this.currentEpisode,
-    };
+  @action public mutateWatchingVideo(video: ISavedVideo): void {
+    this.currentlyWatchingVideo = video;
   }
 
   @action public mutateCurrentVideoProgress(value: number): void {
@@ -73,6 +72,34 @@ class Store {
     const result = remoteConfig().getValue('videoList');
     const videoList = JSON.parse(result.asString());
     this.mutateVideoList(videoList);
+  }
+
+  async saveCurrentlyWatchingVideo(video: IVideo): Promise<void> {
+    try {
+      const watchingVideo: ISavedVideo = {
+        ...video,
+        watchingProgress: this.currentVideoProgress,
+        savedEpisode: this.currentEpisode,
+      };
+      this.mutateWatchingVideo(watchingVideo);
+      await AsyncStorage.setItem(
+        this.storageKey,
+        JSON.stringify(watchingVideo),
+      );
+    } catch (e) {
+      console.log('error while saving video progress to storage', e);
+    }
+  }
+
+  async getSavedVideoProgress(): Promise<void> {
+    try {
+      const value: string | null = await AsyncStorage.getItem(this.storageKey);
+      if (value) {
+        this.mutateWatchingVideo(JSON.parse(value));
+      }
+    } catch (e) {
+      console.log('error while getting video progress from storage', e);
+    }
   }
 }
 

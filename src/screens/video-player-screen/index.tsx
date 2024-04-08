@@ -28,7 +28,9 @@ const { height } = Dimensions.get('window');
 const VideoPlayerScreen = (props: Props) => {
   const { route } = props;
   const { selectedEpisode, video } = route.params;
-  const [currentVideoIndex, setCurrentVideoIndex] = useState<number>(0);
+  const [currentVideoIndex, setCurrentVideoIndex] = useState<number>(
+    selectedEpisode?.savedEpisode || 0,
+  );
   const [savedVideoProgress, setSavedVideoProgress] = useState<number>(
     selectedEpisode?.watchingProgress || 0,
   );
@@ -43,7 +45,7 @@ const VideoPlayerScreen = (props: Props) => {
     }
 
     return () => {
-      Store.mutateWatchingVideo(video);
+      Store.saveCurrentlyWatchingVideo(video);
     };
   }, []);
 
@@ -81,6 +83,7 @@ const VideoPlayerScreen = (props: Props) => {
         )}
         showsVerticalScrollIndicator={false}
         keyExtractor={(item, index) => index.toString()}
+        removeClippedSubviews
         onMomentumScrollEnd={onMomentumScrollEnd}
         onScrollToIndexFailed={({ index }) =>
           console.log(`failed to scroll to ${index}`)

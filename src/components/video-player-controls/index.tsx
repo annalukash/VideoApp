@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Text, View, Dimensions } from 'react-native';
+import { Text, View, Dimensions, Platform } from 'react-native';
 import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import PlayIcon from '../../icons/PlayIcon.tsx';
@@ -21,6 +21,8 @@ const VideoPlayerControls = ({
   videoDuration,
 }: IProps) => {
   const insets: EdgeInsets = useSafeAreaInsets();
+  const bottomInset: number =
+    Platform.OS === 'ios' ? insets.bottom : insets.bottom + 20;
   const fullProgressWidth: number = useMemo(() => width - 84, []);
   const currentProgressWidth: number = useMemo(() => {
     return videoDuration
@@ -29,7 +31,7 @@ const VideoPlayerControls = ({
   }, [videoProgress]);
 
   return (
-    <View style={[Style.row, Style.container, { bottom: insets.bottom }]}>
+    <View style={[Style.row, Style.container, { bottom: bottomInset }]}>
       {isPaused ? <PlayIcon /> : <PauseIcon />}
       <View>
         <View style={{ ...Style.progressBar, width: fullProgressWidth }}>

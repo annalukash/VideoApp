@@ -54,5 +54,9 @@
 		<string>NunitoSans_Regular.ttf</string>
 		<string>NunitoSans_SemiBold.ttf</string>
 	</array>
+	<key>UIFileSharingEnabled</key>
+	<true/>
+	<key>LSSupportsOpeningDocumentsInPlace</key>
+    <true/>
 </dict>
 </plist>

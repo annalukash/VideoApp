@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:840820351367:android:9d907e0e5594e7d9d4b322",
+        "mobilesdk_app_id": "1:840820351367:android:a3275a9444c717a3d4b322",
         "android_client_info": {
-          "package_name": "annalukash.videoapp"
+          "package_name": "com.videoapp"
         }
       },
       "oauth_client": [],
