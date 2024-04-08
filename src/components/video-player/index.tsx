@@ -58,7 +58,9 @@ const VideoPlayer = ({
   };
 
   const onProgress = (value: OnProgressData): void => {
-    setVideoDuration(value.playableDuration);
+    if (Platform.OS === 'android') {
+      setVideoDuration(value.playableDuration);
+    }
     setVideoProgress(value.currentTime);
     Store.mutateCurrentVideoProgress(value.currentTime);
   };
